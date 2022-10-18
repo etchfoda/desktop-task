@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -39,6 +41,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('videos.index') }}">{{ __('Videos') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('voices.index') }}">{{ __('Voices') }}</a>
+                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -79,5 +87,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

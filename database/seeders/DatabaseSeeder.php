@@ -20,5 +20,15 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123456'),
         ]);
+        User::query()->create([
+            'name' => 'Test',
+            'email' => 'test@localhost',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456'),
+        ]);
+        $this->call([
+            VideoSeeder::class,
+            VoiceSeeder::class,
+        ]);
     }
 }
