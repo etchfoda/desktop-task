@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Notifications\CommentAdded;
 use Livewire\Component;
 
 class CommentForm extends Component
@@ -21,10 +22,13 @@ class CommentForm extends Component
     public function saveComment()
     {
         $this->validate();
-        $this->media->comments()->create([
+        $comment = $this->media->comments()->create([
             'content' => $this->content,
             'user_id' => auth()->id(),
         ]);
+        if ($this->media->user_id !== auth()->id()) {
+            $this->media->user->notify(new CommentAdded($this->media, $comment));
+        }
         $this->content = '';
         session()->flash('message', 'comment submitted successfully.');
         $this->emitUp('refreshCommentList');

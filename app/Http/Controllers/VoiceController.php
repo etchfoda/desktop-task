@@ -11,7 +11,7 @@ class VoiceController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth'])->only('create');
+        $this->middleware(['auth', 'verified'])->only('create');
     }
 
     /**

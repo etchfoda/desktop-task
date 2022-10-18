@@ -18,8 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
+Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/videos', App\Http\Controllers\VideoController::class)->only(['index', 'show', 'create']);
 Route::resource('/voices', App\Http\Controllers\VoiceController::class)->only(['index', 'show', 'create']);
